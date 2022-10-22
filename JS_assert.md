@@ -16,6 +16,25 @@ assert excepted == reality, "断言失败提示的message"
 
 ### 将元素聚焦到页面中显示 
 
-el =driver.find_elemnet("","")
->js = "argument[0].scrollIntoView()"
-driver.execute_script()
+el =driver.find_element("","")
+>js = "arguments[0].scrollIntoView()"
+driver.execute_script(js,el)
+
+arguments 表示占位符 arguments[0] 表示取占位符传参的第一个值
+>js="return arguments[0].innerHTML="修改后的文本" or js="return arguments[0].innerHTML"
+innerHTML 两种用法 修改元素的文本信息 或者 获取元素的文本信息 获取文本信息需要 +return
+
+获取元素属性值 getAttribute("属性")
+删除元素元素的属性值 removeAttribute("属性") 多用在只读文本框啊readonly 隐藏元素display等
+添加元素属性 setAttribute("属性", "值")
+
+### keys类 模拟键盘属性操作：
+keys.ENTER 回车
+keys.CTRL,"a" 全选
+
+Keys.F5 刷新
+
+driver.refresh
+driver.back()
+driver.forward()
+
