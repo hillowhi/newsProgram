@@ -13,18 +13,51 @@ def open_browser(type_):
     #     driver = webdriver.Chrome()
     # elif type_ == 'firefox':
     #     driver = webdriver.Firefox()
-#换用反射机制写法：
+    # else:
+    #     driver = webdriver.Edge()
+
+    # 换用反射机制写法：
     '''
     getattr(webdriver, type_)()
     获取webdriver的type_属性  =  webdriver.type_
     即  webdriver.Chrome
-    () 的意思就是返回的是一个函数
+    () 的意思就是返回的是一个函数 可以理解为等同于拼接
     即  webdriver.Chrome()
+    不带()则返回一个参数
     '''
-    try:
-        driver = getattr(webdriver, type_)()
+    # try:
+    #     driver = getattr(webdriver, type_)()
+    # except Exception as e:
+    #     print(e)
+    #     driver.webdriver.type()
+    # return driver
+
+
+# 灵活使用参数 定义浏览器
+    browsers = {
+        'Chrome': ['chrome', 'google', 'Chrome', '谷歌浏览器'],
+        'Firefox': ['firefox', 'fox', '火狐']
+    }
+    # if type_ in browsers['Chrome']:
+    #     driver = webdriver.Chrome()
+    # else:
+    #     driver = webdriver.Firefox()
+    # return driver
+    # 简洁写法
+    key_list = list(browsers.keys())
+
+    for i in key_list:
+        for j in browsers[i]:
+            if type_ == j:
+                driver = getattr(webdriver, i)()
+                return driver
+
+# if __name__ == '__main__':
+#     open_browser('谷歌浏览器')
+
 
 class KeyWord:
+
     driver = webdriver.Chrome()
 
     def __init__(self, type_):
